@@ -1,12 +1,15 @@
 import { useState } from "react";
 import CodeInput from "./CodeInput";
 import CodeTimer from "./CodeTimer";
-import { PhoneText } from "../../styles/AuthStyles";
-import { FormSubmitButton, ButtonText } from "../../styles/GlobalStyles";
+import { PhoneText } from "../../../styles/AuthStyles";
+import { FormSubmitButton, ButtonText } from "../../../styles/GlobalStyles";
+import React from "react";
+import { MuiTelInput } from "mui-tel-input";
 
-const initDigits = ["", "", "", ""];
-
+// форма отправки смс кода
 export default function CodeForm() {
+  // значение полей ввода
+  const initDigits = ["", "", "", ""];
   const [digits, setDigits] = useState(initDigits);
 
   return (
@@ -18,7 +21,7 @@ export default function CodeForm() {
         </PhoneText>
         <CodeInput digits={digits} changeHandler={setDigits} />
         <CodeTimer />
-        <FormSubmitButton>
+        <FormSubmitButton variant="contained">
           <ButtonText>Далее</ButtonText>
         </FormSubmitButton>
       </form>

@@ -1,3 +1,4 @@
-import CodeConfirm from "./CodeConfirm.tsx";
+import CodeEnter from "./Code/CodeEnter";
+import PhoneEnter from "./Phone/PhoneEnter";
 
-export default CodeConfirm;
+export { CodeEnter, PhoneEnter };

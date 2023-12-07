@@ -1,7 +1,13 @@
-import CodeConfirm from "../components/Auth";
-
-export default function AuthPage(){
+import { CodeEnter, PhoneEnter } from "../components/Auth";
+import { ContentCenterWrapper } from "../styles/GlobalStyles";
+import { AuthWrapper } from "../styles/AuthStyles";
+export default function AuthPage() {
   return (
-    <CodeConfirm></CodeConfirm>
-  )
+    <ContentCenterWrapper>
+      <AuthWrapper>
+        <CodeEnter></CodeEnter>
+        <PhoneEnter></PhoneEnter>
+      </AuthWrapper>
+    </ContentCenterWrapper>
+  );
 }
