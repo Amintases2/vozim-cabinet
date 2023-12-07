@@ -9,7 +9,7 @@ const ContentCenterWrapper = styled(Container)`
   justify-content: center;
   align-items: center;
 `;
-// primary buutton
+// primary button для формы
 const FormSubmitButton = styled(Button)`
   text-transform: capitalize;
   background-color: #148eff;
@@ -27,3 +27,4 @@ const ButtonText = styled(Typography)`
 `;
 
 export { ContentCenterWrapper, FormSubmitButton, ButtonText };
+

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FooterText } from "../../../styles/AuthStyles";
+import { FooterText, ResendCodeText } from "../../../styles/AuthStyles";
 
 // таймер для повторной отправки сообщений
 export default function CodeTimer() {
@@ -10,13 +10,10 @@ export default function CodeTimer() {
 
   // логика таймера - вычетание секунд
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds((s) => Math.max(s - 0.5, 0));
-      if (seconds <= 0) {
-        clearInterval(interval);
-      }
+    setInterval(() => {
+      setSeconds((s) => Math.max(s - 1, 0));
     }, 1000);
-  }, []);
+  }, [seconds]);
 
   // обновление таймера, повторная отправка сообщений
   const clickHandler = () => {
@@ -30,9 +27,9 @@ export default function CodeTimer() {
           Отправить повторно через {minutesString}:{secondsString}
         </span>
       ) : (
-        <span onClick={() => clickHandler()}>
-          Нажмите, чтобы получить код повтворно
-        </span>
+        <ResendCodeText onClick={() => clickHandler()}>
+          Отправить СМС-код повторно
+        </ResendCodeText>
       )}
     </FooterText>
   );

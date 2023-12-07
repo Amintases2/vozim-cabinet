@@ -3,8 +3,6 @@ import CodeInput from "./CodeInput";
 import CodeTimer from "./CodeTimer";
 import { PhoneText } from "../../../styles/AuthStyles";
 import { FormSubmitButton, ButtonText } from "../../../styles/GlobalStyles";
-import React from "react";
-import { MuiTelInput } from "mui-tel-input";
 
 // форма отправки смс кода
 export default function CodeForm() {
@@ -28,3 +26,4 @@ export default function CodeForm() {
     </>
   );
 }
+

@@ -1,14 +1,10 @@
-import { AuthTitle, FirstBlock } from "../../../styles/AuthStyles";
-import CodeForm from "../Code/CodeForm";
+import { AuthTitle } from "../../../styles/AuthStyles";
 
 // компонент для идентификации телефона
 export default function PhoneEnter() {
   return (
     <>
-      <FirstBlock>
-        <AuthTitle>Вход</AuthTitle>
-        <CodeForm />
-      </FirstBlock>
+      <AuthTitle>Вход</AuthTitle>
     </>
   );
 }
