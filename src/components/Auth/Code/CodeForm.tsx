@@ -1,11 +1,12 @@
 import { useState } from "react";
 import CodeInput from "./CodeInput";
 import CodeTimer from "./CodeTimer";
-import { PhoneText } from "../../../styles/AuthStyles";
+import { PhoneCodeText } from "../../../styles/AuthStyles";
 import { FormSubmitButton, ButtonText } from "../../../styles/GlobalStyles";
 
 // форма отправки смс кода
-export default function CodeForm() {
+export default function CodeForm(props) {
+  const setLeft = props.nextStep;
   // значение полей ввода
   const initDigits = ["", "", "", ""];
   const [digits, setDigits] = useState(initDigits);
@@ -13,17 +14,16 @@ export default function CodeForm() {
   return (
     <>
       <form>
-        <PhoneText>
+        <PhoneCodeText>
           Введите смс-код, отправленный на номер <br />
           <b>+7 (954) 238-45-23</b>
-        </PhoneText>
+        </PhoneCodeText>
         <CodeInput digits={digits} changeHandler={setDigits} />
         <CodeTimer />
-        <FormSubmitButton variant="contained">
+        <FormSubmitButton onClick={() => setLeft(200)} variant="contained">
           <ButtonText>Далее</ButtonText>
         </FormSubmitButton>
       </form>
     </>
   );
 }
-
