@@ -3,6 +3,7 @@ import {
   Typography,
   TextField,
   InputLabel,
+  Checkbox,
 } from "@mui/material";
 import { MuiTelInput } from "mui-tel-input";
 
@@ -16,7 +17,7 @@ const AuthWrapper = styled("div")`
   padding: 56px;
   box-shadow: 0 0 20px 0 #0000000d;
   margin: 40px;
-  @media(max-width: 425px){
+  @media (max-width: 425px) {
     margin: 0;
   }
 `;
@@ -39,15 +40,18 @@ const AuthInputLabel = styled(InputLabel)`
 `;
 // инпут ввода телефона
 const AuthPhoneInput = styled(MuiTelInput)`
-  box-shadow: 0 1px 2px 0 #1018280d;
-
+  #box-shadow: 0 1px 2px 0 #1018280d;
   > div {
     height: 40px;
-
     > fieldset {
       border-radius: 8px;
       border-color: rgba(28, 28, 28, 0.2);
     }
+  }
+  > .MuiFormHelperText-root {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 6px 0 0 0;
   }
 `;
 // базовый инпут
@@ -85,7 +89,20 @@ const AuthCodeInput = styled(AuthInput)`
       outline: none;
     }
   }
-
+`;
+// чекбокс для пользовательского соглашения
+const AuthCheckBox = styled(Checkbox)`
+  padding: 2px;
+  margin: 0 6px 0 0;
+  color: rgba(28, 28, 28, 0.2);
+  border-radius: 80px;
+  > input {
+    border-radius: 80px;
+  }
+  > .MuiSvgIcon-root {
+    border-radius: 80px;
+    font-size: 28px;
+  }
 `;
 // текст для повторной отправки смс сообщения
 const ResendCodeText = styled(Typography)`
@@ -125,7 +142,7 @@ const NameFooterText = styled(FooterText)`
 // слайдер для смены стадии авторизации
 const AuthSlider = styled("div")`
   max-width: 520px;
-  //overflow: hidden;
+  #overflow: hidden;
 `;
 // обертка для слайдов
 const Slides = styled("div")((props) => ({
@@ -149,6 +166,7 @@ export {
   AuthInputLabel,
   AuthNameInput,
   AuthPhoneInput,
+  AuthCheckBox,
   PhoneFooterText,
   NameFooterText,
   AuthSlider,

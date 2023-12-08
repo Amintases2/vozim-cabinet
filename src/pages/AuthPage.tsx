@@ -1,26 +1,20 @@
 import { CodeEnter, PhoneEnter, NameEnter } from "../components/Auth";
 import { ContentCenterWrapper } from "../styles/GlobalStyles";
-import {
-  AuthWrapper,
-  AuthSlider,
-  Slides,
-  FirstSlide,
-} from "../styles/AuthStyles";
-import { useState } from "react";
+import { AuthWrapper, AuthSlider, Slides } from "../styles/AuthStyles";
+import useAuth from "../hooks/useAuth";
 
 // страница авторизации
 export default function AuthPage() {
-  // отклонение слайдера влево 0 100 200
-  const [left, setLeft] = useState(0);
+  const { left } = useAuth();
   return (
     <ContentCenterWrapper>
       <AuthSlider>
         <Slides left={left}>
           <AuthWrapper>
-            <PhoneEnter nextStep={setLeft}></PhoneEnter>
+            <PhoneEnter></PhoneEnter>
           </AuthWrapper>
           <AuthWrapper>
-            <CodeEnter nextStep={setLeft}></CodeEnter>
+            <CodeEnter></CodeEnter>
           </AuthWrapper>
           <AuthWrapper>
             <NameEnter></NameEnter>

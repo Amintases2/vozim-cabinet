@@ -23,14 +23,15 @@ export default function CodeTimer() {
 
   return (
     <FooterText>
-      {seconds !== 0 ? (
-        <span>
-          Отправить повторно через {minutesString}:{secondsString}
-        </span>
-      ) : (
+      {seconds === 0 && (
         <ResendCodeText onClick={() => clickHandler()}>
           Отправить СМС-код повторно
         </ResendCodeText>
+      )}
+      {seconds !== 0 && (
+        <span>
+          Отправить повторно через {minutesString}:{secondsString}
+        </span>
       )}
     </FooterText>
   );

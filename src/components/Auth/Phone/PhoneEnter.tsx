@@ -2,11 +2,11 @@ import { AuthTitle } from "../../../styles/AuthStyles";
 import PhoneForm from "./PhoneForm";
 
 // компонент для идентификации телефона
-export default function PhoneEnter(props) {
+export default function PhoneEnter() {
   return (
     <>
       <AuthTitle>Вход</AuthTitle>
-      <PhoneForm nextStep={props.nextStep} />
+      <PhoneForm />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { AuthCodeInput } from "../../../styles/AuthStyles";
 import { ChangeEvent, useRef } from "react";
+import { Stack } from "@mui/material";
 
 type CodeInputProps = {
   digits: string[];
@@ -8,39 +9,52 @@ type CodeInputProps = {
 
 // 4 поля ввода для смс кода
 export default function CodeInput(props: CodeInputProps) {
-  const {digits, changeHandler} = props;
+  const { digits, changeHandler } = props;
   const length = digits.length;
+
   // здесь будут ссылки на input-элементы
   const inputRefs = useRef<HTMLElement[]>([]);
+
   const handleChange = (
     index: number,
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     const oldDigit = digits[index];
+
     // старую цифру в поле ввода убираем, оставляя только новую
     const newDigit = event.target.value.trim().replace(oldDigit, "");
+
     // если это не цифра и не пропуск, ничего не делаем, пока не будет цифры
     if ((newDigit < "0" || newDigit > "9") && newDigit !== "") return;
+
     // теперь вызываем callback родителя, чтобы обовить digits
     const newDigits = [...digits]; // копия digits
     newDigits[index] = newDigit;
     changeHandler(newDigits);
-    // смещаем фокус на следующее поле для ввода следующей цифры, если стираем то не двигаемся
+
+    // смещаем фокус на следующее поле для ввода следующей цифры, если стираем то идем назад
     if (newDigit === "") {
       if (index !== 0) {
-        (inputRefs.current[index - 1].children[0].children[0] as HTMLInputElement)?.focus();
+        (
+          inputRefs.current[index - 1].children[0]
+            .children[0] as HTMLInputElement
+        )?.focus();
       }
     } else {
       if (index < length - 1) {
-        (inputRefs.current[index + 1].children[0].children[0] as HTMLInputElement)?.focus();
+        (
+          inputRefs.current[index + 1].children[0]
+            .children[0] as HTMLInputElement
+        )?.focus();
       }
     }
   };
 
   return (
-    <div style={{display: "flex",gap:"0 16px", boxSizing: "border-box"}}>
+    <Stack direction="row" spacing={2}>
       {digits.map((digit, index) => (
         <AuthCodeInput
+          autoComplete="off"
           key={index}
           value={digit}
           onChange={(event: ChangeEvent<HTMLInputElement>) =>
@@ -51,6 +65,6 @@ export default function CodeInput(props: CodeInputProps) {
           }
         />
       ))}
-    </div>
+    </Stack>
   );
 }

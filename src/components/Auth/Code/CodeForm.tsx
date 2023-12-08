@@ -3,10 +3,12 @@ import CodeInput from "./CodeInput";
 import CodeTimer from "./CodeTimer";
 import { PhoneCodeText } from "../../../styles/AuthStyles";
 import { FormSubmitButton, ButtonText } from "../../../styles/GlobalStyles";
+import useAuth from "../../../hooks/useAuth";
 
 // форма отправки смс кода
-export default function CodeForm(props) {
-  const setLeft = props.nextStep;
+export default function CodeForm() {
+  const { setLeft, phone } = useAuth();
+
   // значение полей ввода
   const initDigits = ["", "", "", ""];
   const [digits, setDigits] = useState(initDigits);
@@ -16,7 +18,7 @@ export default function CodeForm(props) {
       <form>
         <PhoneCodeText>
           Введите смс-код, отправленный на номер <br />
-          <b>+7 (954) 238-45-23</b>
+          <b>{phone}</b>
         </PhoneCodeText>
         <CodeInput digits={digits} changeHandler={setDigits} />
         <CodeTimer />
