@@ -38,7 +38,7 @@ export default function CodeInput(props: CodeInputProps) {
   };
 
   return (
-    <div style={{display: "flex", boxSizing: "border-box"}}>
+    <div style={{display: "flex",gap:"0 16px", boxSizing: "border-box"}}>
       {digits.map((digit, index) => (
         <AuthCodeInput
           key={index}

@@ -3,20 +3,22 @@ import {
   Typography,
   TextField,
   InputLabel,
-  Checkbox,
 } from "@mui/material";
 import { MuiTelInput } from "mui-tel-input";
 
 // белая обертка авторизации
 const AuthWrapper = styled("div")`
-  #vertical-align: center;
   position: relative;
   background-color: white;
   box-sizing: border-box;
   border-radius: 16px;
   width: 100%;
   padding: 56px;
-  #box-shadow: 0px 0px 20px 0px #0000000d;
+  box-shadow: 0 0 20px 0 #0000000d;
+  margin: 40px;
+  @media(max-width: 425px){
+    margin: 0;
+  }
 `;
 
 // заголовок на компонентах входа
@@ -37,9 +39,11 @@ const AuthInputLabel = styled(InputLabel)`
 `;
 // инпут ввода телефона
 const AuthPhoneInput = styled(MuiTelInput)`
-  box-shadow: 0px 1px 2px 0px #1018280d;
+  box-shadow: 0 1px 2px 0 #1018280d;
+
   > div {
     height: 40px;
+
     > fieldset {
       border-radius: 8px;
       border-color: rgba(28, 28, 28, 0.2);
@@ -57,9 +61,11 @@ const AuthInput = styled(TextField)`
 `;
 // инпут ввода имени
 const AuthNameInput = styled(AuthInput)`
-  box-shadow: 0px 1px 2px 0px #1018280d;
+  box-shadow: 0 1px 2px 0 #1018280d;
+
   > div {
     height: 40px;
+
     > input {
       font-size: 14px;
       line-height: 24px;
@@ -71,7 +77,6 @@ const AuthNameInput = styled(AuthInput)`
 const AuthCodeInput = styled(AuthInput)`
   height: 60px;
   max-width: 70px;
-  margin-right: 16px;
 
   > div {
     > input {
@@ -81,9 +86,6 @@ const AuthCodeInput = styled(AuthInput)`
     }
   }
 
-  &:nth-last-of-type(1) {
-    margin-right: 0;
-  }
 `;
 // текст для повторной отправки смс сообщения
 const ResendCodeText = styled(Typography)`
@@ -111,7 +113,7 @@ const FooterText = styled(AuthText)`
   line-height: 18px;
   color: rgba(28, 28, 28, 0.6);
 `;
-// футер в Name
+// футер в Phone
 const PhoneFooterText = styled(FooterText)`
   margin: 24px 0 32px 0;
 `;
@@ -122,17 +124,16 @@ const NameFooterText = styled(FooterText)`
 
 // слайдер для смены стадии авторизации
 const AuthSlider = styled("div")`
-  max-width: 440px;
-  overflow: hidden;
-  box-shadow: 0px 0px 60px 0px #0000000d;
-  #padding: 40px;
+  max-width: 520px;
+  //overflow: hidden;
 `;
 // обертка для слайдов
 const Slides = styled("div")((props) => ({
   width: "300%",
   height: "100%",
   display: "flex",
-  //alignItems: "center",
+  //gap: "40px",
+  alignItems: "center",
   position: "relative",
   left: `-${props.left}%`,
   transition: "all 0.2s ease-in-out",
