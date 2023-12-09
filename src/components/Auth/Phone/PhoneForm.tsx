@@ -7,22 +7,23 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { matchIsValidTel } from "mui-tel-input";
 import useAuth from "../../../hooks/useAuth";
+import { AuthContextProps } from "../../../providers/AuthProvider.tsx";
 
 // форма отправки смс кода
 export default function PhoneForm() {
-  const { setLeft, setPhone } = useAuth();
+  const {setLeft, setPhone}: AuthContextProps = useAuth();
 
   // форма отправки телефона
-  const { control, handleSubmit } = useForm({
+  const {control, handleSubmit} = useForm({
     defaultValues: {
       phone: "",
     },
   });
 
   // подтверждение формы -> номер телефона для следующего шага и пролистывание
-  const onSubmit = (event) => {
-    setLeft(100);
-    setPhone(event.phone);
+  const onSubmit = (data: { phone: string }) => {
+    setLeft(100)
+    setPhone(data.phone);
   };
 
   return (
@@ -33,8 +34,8 @@ export default function PhoneForm() {
           name="phone"
           control={control}
           // проверка корректности номера
-          rules={{ validate: matchIsValidTel }}
-          render={({ field, fieldState }) => (
+          rules={{validate: matchIsValidTel}}
+          render={({field, fieldState}) => (
             <>
               <AuthPhoneInput
                 {...field}

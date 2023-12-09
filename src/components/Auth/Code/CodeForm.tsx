@@ -4,10 +4,11 @@ import CodeTimer from "./CodeTimer";
 import { PhoneCodeText } from "../../../styles/AuthStyles";
 import { FormSubmitButton, ButtonText } from "../../../styles/GlobalStyles";
 import useAuth from "../../../hooks/useAuth";
+import { AuthContextProps } from "../../../providers/AuthProvider.tsx";
 
 // форма отправки смс кода
 export default function CodeForm() {
-  const { setLeft, phone } = useAuth();
+  const {setLeft, phone}: AuthContextProps = useAuth();
 
   // значение полей ввода
   const initDigits = ["", "", "", ""];

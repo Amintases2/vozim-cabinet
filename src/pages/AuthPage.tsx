@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 
 // страница авторизации
 export default function AuthPage() {
-  const { left } = useAuth();
+  const {left} = useAuth();
   return (
     <ContentCenterWrapper>
       <AuthSlider>

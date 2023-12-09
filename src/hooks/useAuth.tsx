@@ -3,9 +3,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 // хук в AuthProvider
 const useAuth = () => {
-  const value = useContext(AuthContext);
-
-  return value;
+  return useContext(AuthContext);
 };
 
 export default useAuth;
