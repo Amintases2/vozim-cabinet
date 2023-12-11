@@ -1,15 +1,18 @@
 import { AuthCodeInput } from "../../../styles/AuthStyles";
 import { ChangeEvent, useRef } from "react";
 import { Stack } from "@mui/material";
+import { Controller } from "react-hook-form";
 
 type CodeInputProps = {
   digits: string[];
   changeHandler: (digits: string[]) => void;
+  control: any;
+  setValue: any;
 };
 
 // 4 поля ввода для смс кода
 export default function CodeInput(props: CodeInputProps) {
-  const { digits, changeHandler } = props;
+  const {digits, changeHandler, control, setValue} = props;
   const length = digits.length;
 
   // здесь будут ссылки на input-элементы
@@ -32,6 +35,9 @@ export default function CodeInput(props: CodeInputProps) {
     newDigits[index] = newDigit;
     changeHandler(newDigits);
 
+    // обновляем значение в хук форме
+    setValue(`input${index}`, newDigits[index]);
+
     // смещаем фокус на следующее поле для ввода следующей цифры, если стираем то идем назад
     if (newDigit === "") {
       if (index !== 0) {
@@ -49,20 +55,29 @@ export default function CodeInput(props: CodeInputProps) {
       }
     }
   };
-
   return (
     <Stack direction="row" spacing={2}>
-      {digits.map((digit, index) => (
-        <AuthCodeInput
-          autoComplete="off"
+      {digits.map((digit, index) => (<Controller
           key={index}
-          value={digit}
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            handleChange(index, event)
-          }
-          ref={(element: HTMLInputElement) =>
-            (inputRefs.current[index] = element)
-          }
+          name={`input${index}`}
+          control={control}
+          // проверка корректности номера
+          rules={{required: true}}
+          render={({field, fieldState}) => (
+            <>
+              <AuthCodeInput
+                {...field}
+                autoComplete="off"
+                value={digit}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => handleChange(index, event)
+                }
+                ref={(element: HTMLInputElement) =>
+                  (inputRefs.current[index] = element)
+                }
+                error={fieldState.invalid}
+              />
+            </>
+          )}
         />
       ))}
     </Stack>

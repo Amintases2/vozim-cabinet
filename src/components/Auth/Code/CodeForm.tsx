@@ -5,6 +5,7 @@ import { PhoneCodeText } from "../../../styles/AuthStyles";
 import { FormSubmitButton, ButtonText } from "../../../styles/GlobalStyles";
 import useAuth from "../../../hooks/useAuth";
 import { AuthContextProps } from "../../../providers/AuthProvider.tsx";
+import { useForm } from "react-hook-form";
 
 // форма отправки смс кода
 export default function CodeForm() {
@@ -14,16 +15,28 @@ export default function CodeForm() {
   const initDigits = ["", "", "", ""];
   const [digits, setDigits] = useState(initDigits);
 
+  const {
+    setValue,
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
+    mode:"onChange"
+  })
+  const onSubmit = (data) => {
+    console.log(data)
+    setLeft(200)
+  }
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <PhoneCodeText>
           Введите смс-код, отправленный на номер <br />
           <b>{phone}</b>
         </PhoneCodeText>
-        <CodeInput digits={digits} changeHandler={setDigits} />
+        <CodeInput setValue={setValue} control={control} digits={digits} changeHandler={setDigits} />
         <CodeTimer />
-        <FormSubmitButton onClick={() => setLeft(200)} variant="contained">
+        <FormSubmitButton type="submit" variant="contained">
           <ButtonText>Далее</ButtonText>
         </FormSubmitButton>
       </form>

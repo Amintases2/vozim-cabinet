@@ -17,11 +17,13 @@ export default function PhoneForm() {
   const {control, handleSubmit} = useForm({
     defaultValues: {
       phone: "",
+      defaultCountry: undefined,
     },
   });
 
   // подтверждение формы -> номер телефона для следующего шага и пролистывание
   const onSubmit = (data: { phone: string }) => {
+    console.log()
     setLeft(100)
     setPhone(data.phone);
   };
@@ -40,7 +42,7 @@ export default function PhoneForm() {
               <AuthPhoneInput
                 {...field}
                 defaultCountry="RU"
-                onlyCountries={["RU", "BY"]}
+                onlyCountries={["RU", "BY", "KZ"]}
                 forceCallingCode
                 helperText={
                   fieldState.invalid ? "Ошибка в поле номер телефона" : ""
