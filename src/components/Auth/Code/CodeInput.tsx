@@ -1,5 +1,5 @@
 import { AuthCodeInput } from "../../../styles/AuthStyles";
-import { ChangeEvent, useRef } from "react";
+import { ChangeEvent, useEffect, useRef } from "react";
 import { Stack } from "@mui/material";
 import { Controller } from "react-hook-form";
 
@@ -12,7 +12,8 @@ type CodeInputProps = {
 
 // 4 поля ввода для смс кода
 export default function CodeInput(props: CodeInputProps) {
-  const {digits, changeHandler, control, setValue} = props;
+  const { digits, changeHandler, control, setValue, clearErrors } = props;
+
   const length = digits.length;
 
   // здесь будут ссылки на input-элементы
@@ -27,7 +28,7 @@ export default function CodeInput(props: CodeInputProps) {
     // старую цифру в поле ввода убираем, оставляя только новую
     const newDigit = event.target.value.trim().replace(oldDigit, "");
 
-    // если это не цифра и не пропуск, ничего не делаем, пока не будет цифры
+    // если это не цифра или пропуск, ничего не делаем, пока не будет цифры или пропуска
     if ((newDigit < "0" || newDigit > "9") && newDigit !== "") return;
 
     // теперь вызываем callback родителя, чтобы обовить digits
@@ -46,7 +47,10 @@ export default function CodeInput(props: CodeInputProps) {
             .children[0] as HTMLInputElement
         )?.focus();
       }
-    } else {
+    }
+    if (newDigit !== "") {
+      // очищаем ошибки
+      clearErrors(`input${index}`);
       if (index < length - 1) {
         (
           inputRefs.current[index + 1].children[0]
@@ -57,19 +61,20 @@ export default function CodeInput(props: CodeInputProps) {
   };
   return (
     <Stack direction="row" spacing={2}>
-      {digits.map((digit, index) => (<Controller
+      {digits.map((digit, index) => (
+        <Controller
           key={index}
           name={`input${index}`}
           control={control}
-          // проверка корректности номера
-          rules={{required: true}}
-          render={({field, fieldState}) => (
+          rules={{ required: true }}
+          render={({ field, fieldState }) => (
             <>
               <AuthCodeInput
                 {...field}
                 autoComplete="off"
                 value={digit}
-                onChange={(event: ChangeEvent<HTMLInputElement>) => handleChange(index, event)
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  handleChange(index, event)
                 }
                 ref={(element: HTMLInputElement) =>
                   (inputRefs.current[index] = element)

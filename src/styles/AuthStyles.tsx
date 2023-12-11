@@ -66,7 +66,7 @@ const AuthBaseInput = styled(TextField)`
 `;
 // инпут ввода имени
 const AuthNameInput = styled(AuthBaseInput)`
-  box-shadow: 0 1px 2px 0 #1018280d;
+  #box-shadow: 0 1px 2px 0 #1018280d;
 
   > div {
     height: 40px;
@@ -76,6 +76,11 @@ const AuthNameInput = styled(AuthBaseInput)`
       line-height: 24px;
       outline: none;
     }
+  }
+  > .MuiFormHelperText-root {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 6px 0 0 0;
   }
 `;
 // квадратик ввода кода
@@ -145,7 +150,7 @@ const NameFooterText = styled(FooterText)`
 // слайдер для смены стадии авторизации
 const AuthSlider = styled("div")`
   max-width: 520px;
-  //overflow: hidden;
+  overflow: hidden;
 `;
 // обертка для слайдов
 const Slides = styled("div")((props: { left: 0 | 100 | 200 }) => ({
