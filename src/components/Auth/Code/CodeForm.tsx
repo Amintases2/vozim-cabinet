@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 // форма отправки смс кода
 export default function CodeForm() {
   const { setLeft, phone }: AuthContextProps = useAuth();
-  
+
   // значение полей ввода
   const initDigits = ["", "", "", ""];
   const [digits, setDigits] = useState(initDigits);
@@ -31,9 +31,17 @@ export default function CodeForm() {
     },
   });
   const onSubmit = (data) => {
+    setTimeout(
+      () =>
+        (
+          document.querySelector(`input[name="name"]`) as HTMLInputElement
+        )?.focus(),
+      500,
+    );
     console.log(data);
     setLeft(200);
   };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>

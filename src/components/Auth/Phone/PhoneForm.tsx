@@ -22,15 +22,25 @@ export default function PhoneForm() {
     },
   });
 
-  // подтверждение формы -> номер телефона для следующего шага и пролистывание
+  // подтверждение формы -> номер телефона для следующего шага и пролистывание и автофокус на 1ый квадратик
   const onSubmit = (data: { phone: string }) => {
-    console.log();
+    // таймаут, чтобы не перекашивало влево до полной прокрутки
+    setTimeout(
+      () =>
+        (
+          document.querySelector(`input[name="input0"]`) as HTMLInputElement
+        )?.focus(),
+      500,
+    );
+
     setLeft(100);
     setPhone(data.phone);
   };
-
+  // автоофокус на телефон
   useEffect(() => {
-    setFocus("defaultCountry");
+    (
+      document.querySelector(`input[name="phone"]`) as HTMLInputElement
+    )?.focus();
   }, []);
 
   return (
@@ -47,9 +57,9 @@ export default function PhoneForm() {
               <AuthPhoneInput
                 {...field}
                 defaultCountry="RU"
-                inputRef={(input) => input && input.focus()}
                 onlyCountries={["RU", "BY", "KZ"]}
                 forceCallingCode
+                fullWidth
                 helperText={
                   fieldState.invalid ? "Ошибка в поле номер телефона" : ""
                 }

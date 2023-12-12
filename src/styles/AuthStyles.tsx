@@ -7,6 +7,33 @@ import {
 } from "@mui/material";
 import { MuiTelInput } from "mui-tel-input";
 
+// шаблон самого маленького текста
+const AuthSmallestText = styled(Typography)`
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+`;
+// шаблон маленького текста
+const AuthSmallText = styled(Typography)`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+`;
+// шаблон большого текста
+const AuthHugeText = styled(Typography)`
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: rgba(28, 28, 28, 0.6);
+`;
+
+// шаблон ОГРОМНОГО ТЕКСТА
+const AuthHugestText = styled(Typography)`
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+`;
+
 // белая обертка авторизации
 const AuthWrapper = styled("div")`
   position: relative;
@@ -112,30 +139,26 @@ const AuthCheckBox = styled(Checkbox)`
     font-size: 28px;
   }
 `;
+
+// текст отправки сообщения на телефон
+const PhoneCodeText = styled(AuthSmallText)`
+  margin: 32px 0;
+`;
 // текст для повторной отправки смс сообщения
-const ResendCodeText = styled(Typography)`
+const ResendCodeText = styled(AuthSmallestText)`
   cursor: pointer;
   color: black;
   text-decoration: underline;
-  font-size: 12px;
-  line-height: 18px;
+  font-weight: 500;
 `;
-// шаблон маленького текста
-const AuthText = styled(Typography)`
-  font-weight: 400;
-  margin: 32px 0;
-`;
-
-// текст отправки сообщения на телефон
-const PhoneCodeText = styled(AuthText)`
-  font-size: 14px;
-  line-height: 20px;
+const HeaderHelpText = styled(AuthSmallestText)`
+  color: rgba(28, 28, 28, 0.4);
+  margin: 0 0 4px 0;
 `;
 
 // текст перед сабмитом
-const FooterText = styled(AuthText)`
-  font-size: 12px;
-  line-height: 18px;
+const FooterText = styled(AuthSmallestText)`
+  margin: 32px 0;
   color: rgba(28, 28, 28, 0.6);
 `;
 // футер в Phone
@@ -179,4 +202,8 @@ export {
   NameFooterText,
   AuthSlider,
   Slides,
+  HeaderHelpText,
+  AuthSmallText,
+  AuthHugeText,
+  AuthHugestText,
 };

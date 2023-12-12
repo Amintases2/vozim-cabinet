@@ -28,7 +28,7 @@ export default function NameForm() {
           name="name"
           control={control}
           // проверка корректности номера
-          rules={{ required: true, pattern: "^[A-Za-z- ]+$" }}
+          rules={{ required: true, pattern: /^[A-Za-zА-ЯёЁа-я- ]+$/ }}
           render={({ field, fieldState }) => (
             <>
               <AuthNameInput

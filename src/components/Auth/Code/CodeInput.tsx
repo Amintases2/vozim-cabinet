@@ -59,6 +59,7 @@ export default function CodeInput(props: CodeInputProps) {
       }
     }
   };
+
   return (
     <Stack direction="row" spacing={2}>
       {digits.map((digit, index) => (
@@ -76,9 +77,9 @@ export default function CodeInput(props: CodeInputProps) {
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                   handleChange(index, event)
                 }
-                ref={(element: HTMLInputElement) =>
-                  (inputRefs.current[index] = element)
-                }
+                ref={(element: HTMLInputElement) => {
+                  inputRefs.current[index] = element;
+                }}
                 error={fieldState.invalid}
               />
             </>

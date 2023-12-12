@@ -4,7 +4,7 @@ import { Typography, Button, Container, styled } from "@mui/material";
 const ContentCenterWrapper = styled(Container)`
   position: relative;
   padding: 0;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,4 +27,3 @@ const ButtonText = styled(Typography)`
 `;
 
 export { ContentCenterWrapper, FormSubmitButton, ButtonText };
-
