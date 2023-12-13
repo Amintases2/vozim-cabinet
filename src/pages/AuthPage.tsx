@@ -4,10 +4,10 @@ import {
   NameEnter,
   MobileApp,
   Header,
-} from "../components/Auth";
-import { ContentCenterWrapper } from "../styles/GlobalStyles";
-import { AuthWrapper, AuthSlider, Slides } from "../styles/AuthStyles";
-import useAuth from "../hooks/useAuth";
+} from "@components/Auth";
+import { ContentCenterWrapper } from "@styles/GlobalStyles";
+import { AuthSlider, Slides } from "@styles/AuthStyles";
+import useAuth from "@hooks/useAuth";
 import { Stack } from "@mui/material";
 
 // страница авторизации
@@ -20,15 +20,9 @@ export default function AuthPage() {
         <ContentCenterWrapper>
           <AuthSlider>
             <Slides left={left}>
-              <AuthWrapper>
-                <PhoneEnter></PhoneEnter>
-              </AuthWrapper>
-              <AuthWrapper>
-                <CodeEnter></CodeEnter>
-              </AuthWrapper>
-              <AuthWrapper>
-                <NameEnter></NameEnter>
-              </AuthWrapper>
+              <PhoneEnter />
+              <CodeEnter />
+              <NameEnter />
             </Slides>
           </AuthSlider>
         </ContentCenterWrapper>

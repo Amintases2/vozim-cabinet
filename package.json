@@ -13,11 +13,14 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/inter": "^5.0.15",
-    "@mui/material": "^5.14.19",
+    "@mui/lab": "^5.0.0-alpha.156",
+    "@mui/material": "^5.15.0",
+    "axios": "^1.6.2",
     "mui-tel-input": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
+    "react-query": "^3.39.3",
     "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {

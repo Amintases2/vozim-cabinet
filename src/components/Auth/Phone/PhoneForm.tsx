@@ -9,18 +9,30 @@ import { matchIsValidTel } from "mui-tel-input";
 import useAuth from "../../../hooks/useAuth";
 import { AuthContextProps } from "../../../providers/AuthProvider.tsx";
 import { useEffect } from "react";
+import { useQuery } from "react-query";
 
 // форма отправки смс кода
 export default function PhoneForm() {
   const { setLeft, setPhone }: AuthContextProps = useAuth();
 
   // форма отправки телефона
-  const { control, handleSubmit, setFocus } = useForm({
+  const { control, handleSubmit } = useForm({
     defaultValues: {
       phone: "",
       defaultCountry: undefined,
     },
   });
+
+  // отправка телефона при сабмите
+  const { isLoading, error, data, refetch } = useQuery(
+    "phone",
+    () =>
+      fetch("https://api.github.com/repos/tannerlinsley/react-query").then(
+        (res) => res.json(),
+      ),
+    { refetchOnMount: false },
+  );
+  console.log(data);
 
   // подтверждение формы -> номер телефона для следующего шага и пролистывание и автофокус на 1ый квадратик
   const onSubmit = (data: { phone: string }) => {
@@ -73,7 +85,7 @@ export default function PhoneForm() {
           Если вы ещё не регистрировались, то это <br /> произойдет
           автоматически
         </PhoneFooterText>
-        <FormSubmitButton type="submit" variant="contained">
+        <FormSubmitButton loading={isLoading} type="submit" variant="contained">
           <ButtonText>Далее</ButtonText>
         </FormSubmitButton>
       </form>

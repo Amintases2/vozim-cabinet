@@ -1,5 +1,5 @@
-import { AuthCodeInput } from "../../../styles/AuthStyles";
-import { ChangeEvent, useEffect, useRef } from "react";
+import { AuthCodeInput } from "@styles/AuthStyles";
+import { ChangeEvent, useRef } from "react";
 import { Stack } from "@mui/material";
 import { Controller } from "react-hook-form";
 
@@ -8,6 +8,7 @@ type CodeInputProps = {
   changeHandler: (digits: string[]) => void;
   control: any;
   setValue: any;
+  clearErrors: any;
 };
 
 // 4 поля ввода для смс кода

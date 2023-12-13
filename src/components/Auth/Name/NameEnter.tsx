@@ -1,11 +1,10 @@
-import { AuthTitle } from "../../../styles/AuthStyles";
 import NameForm from "./NameForm";
+import AuthEnter from "../Layouts/AuthEnter";
 // компонент для идентификации имени
 export default function NameEnter() {
   return (
-    <>
-      <AuthTitle>Познакомимся?</AuthTitle>
+    <AuthEnter title="Познакомимся?">
       <NameForm />
-    </>
+    </AuthEnter>
   );
 }

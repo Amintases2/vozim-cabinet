@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CodeInput from "./CodeInput";
 import CodeTimer from "./CodeTimer";
-import { PhoneCodeText } from "../../../styles/AuthStyles";
-import { FormSubmitButton, ButtonText } from "../../../styles/GlobalStyles";
-import useAuth from "../../../hooks/useAuth";
-import { AuthContextProps } from "../../../providers/AuthProvider.tsx";
+import { PhoneCodeText } from "@styles/AuthStyles";
+import { FormSubmitButton, ButtonText } from "@styles/GlobalStyles";
+import useAuth from "@hooks/useAuth";
+import { AuthContextProps } from "@providers/AuthProvider.tsx";
 import { useForm } from "react-hook-form";
 
 // форма отправки смс кода
@@ -30,7 +30,12 @@ export default function CodeForm() {
       input3: "",
     },
   });
-  const onSubmit = (data) => {
+  const onSubmit = (data: {
+    input0: string;
+    input1: string;
+    input2: string;
+    input3: string;
+  }) => {
     setTimeout(
       () =>
         (

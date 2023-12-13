@@ -7,31 +7,39 @@ import {
 } from "@mui/material";
 import { MuiTelInput } from "mui-tel-input";
 
-// шаблон самого маленького текста
-const AuthSmallestText = styled(Typography)`
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-`;
-// шаблон маленького текста
-const AuthSmallText = styled(Typography)`
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-`;
-// шаблон большого текста
-const AuthHugeText = styled(Typography)`
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 28px;
-  color: rgba(28, 28, 28, 0.6);
+import {
+  SmallestText,
+  SmallText,
+  HugeText,
+  HugestText,
+} from "@styles/GlobalStyles";
+
+
+import { device } from "@styles/device";
+
+// шапка авторизации
+const HeaderWrapper = styled("div")`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 16px 28px;
+  position: absolute;
+  top: 0;
+  width: 100%;
 `;
 
-// шаблон ОГРОМНОГО ТЕКСТА
-const AuthHugestText = styled(Typography)`
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 28px;
+// обертка рекламы мобилки справа
+const MobileAppWrapper = styled("div")`
+  display: none;
+  justify-content: end;
+  align-items: center;
+  background-color: #f3f3f3;
+  position: relative;
+  width: 480px;
+  @media (${device.laptopL}) {
+    display: flex;
+  }
 `;
 
 // белая обертка авторизации
@@ -43,9 +51,9 @@ const AuthWrapper = styled("div")`
   width: 100%;
   padding: 56px;
   box-shadow: 0 0 20px 0 #0000000d;
-  margin: 40px;
-  @media (max-width: 425px) {
-    margin: 0;
+  margin: 0;
+  @media (${device.mobileL}) {
+    margin: 40px;
   }
 `;
 
@@ -56,6 +64,7 @@ const AuthTitle = styled(Typography)`
   line-height: 36px;
   font-weight: 600;
 `;
+
 // Лейбл для инпута телефона и имени
 const AuthInputLabel = styled(InputLabel)`
   font-size: 14px;
@@ -65,6 +74,7 @@ const AuthInputLabel = styled(InputLabel)`
   margin-bottom: 6px;
   color: black;
 `;
+
 // инпут ввода телефона
 const AuthPhoneInput = styled(MuiTelInput)`
   > div {
@@ -77,11 +87,14 @@ const AuthPhoneInput = styled(MuiTelInput)`
   }
 
   > .MuiFormHelperText-root {
+    #position: absolute;
+    #top: 35px;
     font-size: 14px;
     line-height: 20px;
     margin: 6px 0 0 0;
   }
 `;
+
 // базовый инпут
 const AuthBaseInput = styled(TextField)`
   > div {
@@ -91,14 +104,12 @@ const AuthBaseInput = styled(TextField)`
     }
   }
 `;
+
 // инпут ввода имени
 const AuthNameInput = styled(AuthBaseInput)`
-  #box-shadow: 0 1px 2px 0 #1018280d;
-
   > div {
     height: 40px;
-
-    > input {
+    > .MuiInputBase-input {
       font-size: 14px;
       line-height: 24px;
       outline: none;
@@ -108,31 +119,31 @@ const AuthNameInput = styled(AuthBaseInput)`
     font-size: 14px;
     line-height: 20px;
     margin: 6px 0 0 0;
+    #position: absolute;
+    #top: 35px;
   }
 `;
+
 // квадратик ввода кода
 const AuthCodeInput = styled(AuthBaseInput)`
   height: 60px;
   max-width: 70px;
 
   > div {
-    > input {
+    > .MuiInputBase-input {
       font-size: 24px;
       text-align: center;
       outline: none;
     }
   }
 `;
+
 // чекбокс для пользовательского соглашения
 const AuthCheckBox = styled(Checkbox)`
   padding: 2px;
   margin: 0 6px 0 0;
   color: rgba(28, 28, 28, 0.2);
   border-radius: 80px;
-
-  > input {
-    border-radius: 80px;
-  }
 
   > .MuiSvgIcon-root {
     border-radius: 80px;
@@ -141,23 +152,26 @@ const AuthCheckBox = styled(Checkbox)`
 `;
 
 // текст отправки сообщения на телефон
-const PhoneCodeText = styled(AuthSmallText)`
+const PhoneCodeText = styled(SmallText)`
   margin: 32px 0;
 `;
+
 // текст для повторной отправки смс сообщения
-const ResendCodeText = styled(AuthSmallestText)`
+const ResendCodeText = styled(SmallestText)`
   cursor: pointer;
   color: black;
   text-decoration: underline;
   font-weight: 500;
 `;
-const HeaderHelpText = styled(AuthSmallestText)`
+
+// текст перед номером тех поддержки
+const HeaderHelpText = styled(SmallestText)`
   color: rgba(28, 28, 28, 0.4);
   margin: 0 0 4px 0;
 `;
 
 // текст перед сабмитом
-const FooterText = styled(AuthSmallestText)`
+const FooterText = styled(SmallestText)`
   margin: 32px 0;
   color: rgba(28, 28, 28, 0.6);
 `;
@@ -165,9 +179,14 @@ const FooterText = styled(AuthSmallestText)`
 const PhoneFooterText = styled(FooterText)`
   margin: 24px 0 32px 0;
 `;
+
 // футер в Name
 const NameFooterText = styled(FooterText)`
   margin: 28px 0;
+`;
+// большой текст в рекламе Мобильного приложения
+const MobileHugeText = styled(HugeText)`
+  color: rgba(28, 28, 28, 0.6);
 `;
 
 // слайдер для смены стадии авторизации
@@ -180,7 +199,6 @@ const Slides = styled("div")((props: { left: 0 | 100 | 200 }) => ({
   width: "300%",
   height: "100%",
   display: "flex",
-  //gap: "40px",
   alignItems: "center",
   position: "relative",
   left: `-${props.left}%`,
@@ -188,6 +206,8 @@ const Slides = styled("div")((props: { left: 0 | 100 | 200 }) => ({
 }));
 
 export {
+  MobileAppWrapper,
+  HeaderWrapper,
   AuthWrapper,
   AuthTitle,
   PhoneCodeText,
@@ -203,7 +223,5 @@ export {
   AuthSlider,
   Slides,
   HeaderHelpText,
-  AuthSmallText,
-  AuthHugeText,
-  AuthHugestText,
+  MobileHugeText,
 };

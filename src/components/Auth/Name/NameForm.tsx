@@ -1,10 +1,10 @@
-import { FormSubmitButton, ButtonText } from "../../../styles/GlobalStyles";
+import { FormSubmitButton, ButtonText } from "@styles/GlobalStyles";
 import {
   AuthInputLabel,
   AuthNameInput,
   NameFooterText,
   AuthCheckBox,
-} from "../../../styles/AuthStyles";
+} from "@styles/AuthStyles";
 import { useForm, Controller } from "react-hook-form";
 
 // форма отправки имени

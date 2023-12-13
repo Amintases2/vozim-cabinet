@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FooterText, ResendCodeText } from "../../../styles/AuthStyles";
+import { FooterText, ResendCodeText } from "@styles/AuthStyles";
 
 // таймер для повторной отправки сообщений
 export default function CodeTimer() {
@@ -17,14 +17,14 @@ export default function CodeTimer() {
   }, []);
 
   // обновление таймера, повторная отправка сообщений
-  const clickHandler = () => {
+  const handleClick = () => {
     setSeconds(90);
   };
 
   return (
     <FooterText>
       {seconds === 0 && (
-        <ResendCodeText onClick={() => clickHandler()}>
+        <ResendCodeText onClick={handleClick}>
           Отправить СМС-код повторно
         </ResendCodeText>
       )}

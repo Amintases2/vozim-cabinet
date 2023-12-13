@@ -1,12 +1,11 @@
-import { AuthTitle } from "../../../styles/AuthStyles";
 import PhoneForm from "./PhoneForm";
+import AuthEnter from "../Layouts/AuthEnter";
 
 // компонент для идентификации телефона
 export default function PhoneEnter() {
   return (
-    <>
-      <AuthTitle>Вход</AuthTitle>
+    <AuthEnter title="Вход">
       <PhoneForm />
-    </>
+    </AuthEnter>
   );
 }

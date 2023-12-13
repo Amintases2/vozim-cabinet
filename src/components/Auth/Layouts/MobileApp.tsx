@@ -1,26 +1,17 @@
-import { Box, Stack } from "@mui/material";
-import Iphone from "../../../assets/iPhone12.svg";
-import AppGalery from "../../../assets/AppGallery.svg";
-import AppStore from "../../../assets/AppStore.svg";
-import GooglePlay from "../../../assets/GooglePlay.svg";
-import QR from "../../../assets/QR.svg";
-import Lines from "../../../assets/Lines.svg";
-import { AuthHugeText, AuthHugestText } from "../../../styles/AuthStyles";
+import { Stack, Box } from "@mui/material";
+import Iphone from "@assets/iPhone12.svg";
+import AppGalery from "@assets/AppGallery.svg";
+import AppStore from "@assets/AppStore.svg";
+import GooglePlay from "@assets/GooglePlay.svg";
+import QR from "@assets/QR.svg";
+import Lines from "@assets/Lines.svg";
+import { HugestText } from "@styles/GlobalStyles";
+import { MobileHugeText, MobileAppWrapper } from "@styles/AuthStyles";
 
 export default function MobileApp() {
   return (
-    <Stack
-      direction="row"
-      width={"480px"}
-      display={{ xs: "none", md: "flex" }}
-      alignItems="center"
-      backgroundColor="#f3f3f3"
-      justifyContent="end"
-      useFlexGap
-      flexWrap="wrap"
-      position="relative"
-    >
-      <div
+    <MobileAppWrapper>
+      <Box
         style={{
           backgroundColor: "white",
           borderRadius: "16px 0 0 16px",
@@ -39,7 +30,7 @@ export default function MobileApp() {
         <div>
           <img src={AppGalery} />
         </div>
-      </div>
+      </Box>
       <div style={{ maxWidth: "440px" }}>
         <img src={Iphone} />
       </div>
@@ -59,14 +50,14 @@ export default function MobileApp() {
             paddingLeft: "80px",
           }}
         >
-          <AuthHugeText component="span">Отслеживайте доставку</AuthHugeText>
+          <MobileHugeText component="span">
+            Отслеживайте доставку
+          </MobileHugeText>
           <br />
-          <AuthHugestText component="span">
-            в мобильном приложении
-          </AuthHugestText>
+          <HugestText component="span">в мобильном приложении</HugestText>
         </div>
         <img src={Lines} />
       </div>
-    </Stack>
+    </MobileAppWrapper>
   );
 }
