@@ -14,7 +14,6 @@ import {
   HugestText,
 } from "@styles/GlobalStyles";
 
-
 import { device } from "@styles/device";
 
 // шапка авторизации
@@ -37,7 +36,7 @@ const MobileAppWrapper = styled("div")`
   background-color: #f3f3f3;
   position: relative;
   width: 480px;
-  @media (${device.laptopL}) {
+  @media (${device.laptop}) {
     display: flex;
   }
 `;
@@ -52,7 +51,7 @@ const AuthWrapper = styled("div")`
   padding: 56px;
   box-shadow: 0 0 20px 0 #0000000d;
   margin: 0;
-  @media (${device.mobileL}) {
+  @media (${device.mobile}) {
     margin: 40px;
   }
 `;

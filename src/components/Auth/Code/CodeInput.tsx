@@ -2,18 +2,18 @@ import { AuthCodeInput } from "@styles/AuthStyles";
 import { ChangeEvent, useRef } from "react";
 import { Stack } from "@mui/material";
 import { Controller } from "react-hook-form";
-
+import { useAuth } from "@hooks/useAuth";
 type CodeInputProps = {
-  digits: string[];
-  changeHandler: (digits: string[]) => void;
   control: any;
   setValue: any;
   clearErrors: any;
+  error: any;
 };
 
 // 4 поля ввода для смс кода
 export default function CodeInput(props: CodeInputProps) {
-  const { digits, changeHandler, control, setValue, clearErrors } = props;
+  const { control, setValue, clearErrors, error } = props;
+  const { digits, setDigits }: AuthContextProps = useAuth();
 
   const length = digits.length;
 
@@ -35,7 +35,7 @@ export default function CodeInput(props: CodeInputProps) {
     // теперь вызываем callback родителя, чтобы обовить digits
     const newDigits = [...digits]; // копия digits
     newDigits[index] = newDigit;
-    changeHandler(newDigits);
+    setDigits(newDigits);
 
     // обновляем значение в хук форме
     setValue(`input${index}`, newDigits[index]);
@@ -75,13 +75,14 @@ export default function CodeInput(props: CodeInputProps) {
                 {...field}
                 autoComplete="off"
                 value={digit}
+                inputProps={{ inputMode: "numeric" }}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                   handleChange(index, event)
                 }
                 ref={(element: HTMLInputElement) => {
                   inputRefs.current[index] = element;
                 }}
-                error={fieldState.invalid}
+                error={fieldState.invalid || error}
               />
             </>
           )}

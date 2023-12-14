@@ -28,6 +28,8 @@
       "@styles/*": ["src/styles/*"],
       "@hooks/*": ["src/hooks/*"],
       "@themes/*": ["src/themes/*"],
+      "@services/*": ["src/services/*"],
+      "@helpers/*": ["src/helpers/*"],
       "@providers/*": ["src/providers/*"]
     }
   },

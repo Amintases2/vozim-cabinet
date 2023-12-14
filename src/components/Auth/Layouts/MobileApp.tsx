@@ -1,6 +1,6 @@
 import { Stack, Box } from "@mui/material";
 import Iphone from "@assets/iPhone12.svg";
-import AppGalery from "@assets/AppGallery.svg";
+import AppGallery from "@assets/AppGallery.svg";
 import AppStore from "@assets/AppStore.svg";
 import GooglePlay from "@assets/GooglePlay.svg";
 import QR from "@assets/QR.svg";
@@ -28,7 +28,7 @@ export default function MobileApp() {
           <img src={AppStore} />
         </div>
         <div>
-          <img src={AppGalery} />
+          <img src={AppGallery} />
         </div>
       </Box>
       <div style={{ maxWidth: "440px" }}>

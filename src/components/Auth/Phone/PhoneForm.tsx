@@ -1,53 +1,27 @@
-import { FormSubmitButton, ButtonText } from "../../../styles/GlobalStyles";
+import { FormSubmitButton, ButtonText } from "@styles/GlobalStyles";
 import {
   PhoneFooterText,
   AuthInputLabel,
   AuthPhoneInput,
-} from "../../../styles/AuthStyles";
+} from "@styles/AuthStyles";
 import { useForm, Controller } from "react-hook-form";
 import { matchIsValidTel } from "mui-tel-input";
-import useAuth from "../../../hooks/useAuth";
-import { AuthContextProps } from "../../../providers/AuthProvider.tsx";
+import { useAuth } from "@hooks/useAuth";
+import { usePhone } from "@hooks/usePhone";
+import { AuthContextProps } from "@providers/AuthProvider.tsx";
 import { useEffect } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 // форма отправки смс кода
 export default function PhoneForm() {
-  const { setLeft, setPhone }: AuthContextProps = useAuth();
+  const { phone, setPhone }: AuthContextProps = useAuth();
 
   // форма отправки телефона
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      phone: "",
-      defaultCountry: undefined,
-    },
-  });
+  const { control, handleSubmit, setValue } = useForm();
 
-  // отправка телефона при сабмите
-  const { isLoading, error, data, refetch } = useQuery(
-    "phone",
-    () =>
-      fetch("https://api.github.com/repos/tannerlinsley/react-query").then(
-        (res) => res.json(),
-      ),
-    { refetchOnMount: false },
-  );
-  console.log(data);
+  // отправка запроса на авторизацию по телефону
+  const { isLoading, error, data, isSuccess, refetch } = usePhone();
 
-  // подтверждение формы -> номер телефона для следующего шага и пролистывание и автофокус на 1ый квадратик
-  const onSubmit = (data: { phone: string }) => {
-    // таймаут, чтобы не перекашивало влево до полной прокрутки
-    setTimeout(
-      () =>
-        (
-          document.querySelector(`input[name="input0"]`) as HTMLInputElement
-        )?.focus(),
-      500,
-    );
-
-    setLeft(100);
-    setPhone(data.phone);
-  };
   // автоофокус на телефон
   useEffect(() => {
     (
@@ -57,7 +31,7 @@ export default function PhoneForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(refetch)}>
         <AuthInputLabel>Номер телефона</AuthInputLabel>
         <Controller
           name="phone"
@@ -71,12 +45,17 @@ export default function PhoneForm() {
                 defaultCountry="RU"
                 onlyCountries={["RU", "BY", "KZ"]}
                 forceCallingCode
-                fullWidth
+                onChange={(event) => {
+                  setPhone(event);
+                  setValue(`phone`, event);
+                }}
+                value={phone}
                 helperText={
-                  fieldState.invalid ? "Ошибка в поле номер телефона" : ""
+                  fieldState.invalid || error
+                    ? "Ошибка в поле номер телефона"
+                    : ""
                 }
-                error={fieldState.invalid}
-                // autoFocus
+                error={fieldState.invalid || error}
               />
             </>
           )}

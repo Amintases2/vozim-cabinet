@@ -3,17 +3,22 @@ import CodeInput from "./CodeInput";
 import CodeTimer from "./CodeTimer";
 import { PhoneCodeText } from "@styles/AuthStyles";
 import { FormSubmitButton, ButtonText } from "@styles/GlobalStyles";
-import useAuth from "@hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
+import { useCode } from "@hooks/useCode";
 import { AuthContextProps } from "@providers/AuthProvider.tsx";
 import { useForm } from "react-hook-form";
+
+type CodeSubmitProps = {
+  input0: string;
+  input1: string;
+  input2: string;
+  input3: string;
+};
 
 // форма отправки смс кода
 export default function CodeForm() {
   const { setLeft, phone }: AuthContextProps = useAuth();
-
-  // значение полей ввода
-  const initDigits = ["", "", "", ""];
-  const [digits, setDigits] = useState(initDigits);
+  const { isLoading, error, data, isSuccess, refetch } = useCode();
 
   const {
     clearErrors,
@@ -21,35 +26,11 @@ export default function CodeForm() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    mode: "onChange",
-    defaultValues: {
-      input0: "",
-      input1: "",
-      input2: "",
-      input3: "",
-    },
-  });
-  const onSubmit = (data: {
-    input0: string;
-    input1: string;
-    input2: string;
-    input3: string;
-  }) => {
-    setTimeout(
-      () =>
-        (
-          document.querySelector(`input[name="name"]`) as HTMLInputElement
-        )?.focus(),
-      500,
-    );
-    console.log(data);
-    setLeft(200);
-  };
+  } = useForm();
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(refetch)}>
         <PhoneCodeText>
           Введите смс-код, отправленный на номер <br />
           <b>{phone}</b>
@@ -57,12 +38,11 @@ export default function CodeForm() {
         <CodeInput
           setValue={setValue}
           control={control}
-          digits={digits}
-          changeHandler={setDigits}
           clearErrors={clearErrors}
+          error={error}
         />
         <CodeTimer />
-        <FormSubmitButton type="submit" variant="contained">
+        <FormSubmitButton loading={isLoading} type="submit" variant="contained">
           <ButtonText>Далее</ButtonText>
         </FormSubmitButton>
       </form>

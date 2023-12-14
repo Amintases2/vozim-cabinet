@@ -7,7 +7,7 @@ import {
 } from "@components/Auth";
 import { ContentCenterWrapper } from "@styles/GlobalStyles";
 import { AuthSlider, Slides } from "@styles/AuthStyles";
-import useAuth from "@hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
 import { Stack } from "@mui/material";
 
 // страница авторизации

@@ -1,5 +1,5 @@
-import AuthPage from "./pages/AuthPage";
-import { AuthProvider } from "./providers/AuthProvider";
+import AuthPage from "@pages/AuthPage";
+import { AuthProvider } from "@providers/AuthProvider";
 
 function App() {
   return (
