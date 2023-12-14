@@ -1,24 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import AuthService from "@services/AuthService.tsx";
 import { useAuth } from "@hooks/useAuth";
-import { setFocusAfter } from "@helpers/helper";
+import { AuthContextProps } from "@providers/AuthProvider.tsx";
 
-// хук useQuery для 1ого шага - идентификации телефона
-const usePhone = () => {
-  const { setLeft, phone }: AuthContextProps = useAuth();
+// хук useQuery для 3ого шага - установка имени
+
+const useSendName = () => {
+  const {name}: AuthContextProps = useAuth();
 
   return useQuery({
-    queryKey: ["phone"],
+    queryKey: ["name"],
     queryFn: () => {
-      const response = AuthService.authTest(phone.split(" ").join(""));
+      const response = AuthService.authName(name);
       response
         .then((result) => {
           console.log(result);
-          // пролистывание
-          setLeft(100);
 
-          // устанавливаем фокус на след шаг
-          setFocusAfter(`input[name="input0"]`);
           return result;
         })
         .catch((error) => {
@@ -34,4 +31,4 @@ const usePhone = () => {
   });
 };
 
-export { usePhone };
+export { useSendName };

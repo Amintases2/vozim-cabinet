@@ -7,20 +7,19 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { matchIsValidTel } from "mui-tel-input";
 import { useAuth } from "@hooks/useAuth";
-import { usePhone } from "@hooks/usePhone";
+import { useSendPhone } from "@hooks/useSendPhone.tsx";
 import { AuthContextProps } from "@providers/AuthProvider.tsx";
 import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
 
 // форма отправки смс кода
 export default function PhoneForm() {
-  const { phone, setPhone }: AuthContextProps = useAuth();
+  const {phone, setPhone}: AuthContextProps = useAuth();
 
   // форма отправки телефона
-  const { control, handleSubmit, setValue } = useForm();
+  const {control, handleSubmit, setValue} = useForm();
 
   // отправка запроса на авторизацию по телефону
-  const { isLoading, error, data, isSuccess, refetch } = usePhone();
+  const {isLoading, error, refetch} = useSendPhone();
 
   // автоофокус на телефон
   useEffect(() => {
@@ -37,8 +36,8 @@ export default function PhoneForm() {
           name="phone"
           control={control}
           // проверка корректности номера
-          rules={{ validate: matchIsValidTel }}
-          render={({ field, fieldState }) => (
+          rules={{validate: matchIsValidTel}}
+          render={({field, fieldState}) => (
             <>
               <AuthPhoneInput
                 {...field}
@@ -55,7 +54,7 @@ export default function PhoneForm() {
                     ? "Ошибка в поле номер телефона"
                     : ""
                 }
-                error={fieldState.invalid || error}
+                error={fieldState.invalid}
               />
             </>
           )}

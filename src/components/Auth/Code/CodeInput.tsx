@@ -3,6 +3,8 @@ import { ChangeEvent, useRef } from "react";
 import { Stack } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { useAuth } from "@hooks/useAuth";
+import { AuthContextProps } from "@providers/AuthProvider.tsx";
+
 type CodeInputProps = {
   control: any;
   setValue: any;
@@ -12,8 +14,8 @@ type CodeInputProps = {
 
 // 4 поля ввода для смс кода
 export default function CodeInput(props: CodeInputProps) {
-  const { control, setValue, clearErrors, error } = props;
-  const { digits, setDigits }: AuthContextProps = useAuth();
+  const {control, setValue, clearErrors, error} = props;
+  const {digits, setDigits}: AuthContextProps = useAuth();
 
   const length = digits.length;
 
@@ -68,14 +70,14 @@ export default function CodeInput(props: CodeInputProps) {
           key={index}
           name={`input${index}`}
           control={control}
-          rules={{ required: true }}
-          render={({ field, fieldState }) => (
+          rules={{required: true}}
+          render={({field, fieldState}) => (
             <>
               <AuthCodeInput
                 {...field}
                 autoComplete="off"
                 value={digit}
-                inputProps={{ inputMode: "numeric" }}
+                inputProps={{inputMode: "numeric"}}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                   handleChange(index, event)
                 }

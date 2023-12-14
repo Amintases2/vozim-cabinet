@@ -12,10 +12,10 @@ import { Stack } from "@mui/material";
 
 // страница авторизации
 export default function AuthPage() {
-  const { left } = useAuth();
+  const {left} = useAuth();
   return (
-    <Stack direction={{ xs: "column", sm: "row" }} height={"100vh"}>
-      <Stack style={{ flexGrow: "1", position: "relative" }}>
+    <Stack direction={{xs: "column", sm: "row"}} height={"100vh"}>
+      <Stack style={{flexGrow: "1", position: "relative"}}>
         <Header />
         <ContentCenterWrapper>
           <AuthSlider>

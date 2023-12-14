@@ -7,19 +7,19 @@ import {
 } from "@styles/AuthStyles";
 import { useForm, Controller } from "react-hook-form";
 import { useAuth } from "@hooks/useAuth";
-import { useName } from "@hooks/useName";
+import { useSendName } from "@hooks/useSendName.tsx";
 import CheckboxFalse from "@assets/CheckboxFalse.svg";
 import CheckboxTrue from "@assets/CheckboxTrue.svg";
 
 // форма отправки имени
 export default function NameForm() {
-  const { name, setName } = useAuth();
+  const {name, setName} = useAuth();
 
   // отправка запроса на установку имени
-  const { isLoading, error, data, isSuccess, refetch } = useName();
+  const {isLoading, refetch} = useSendName();
 
   // форма отправки телефона
-  const { control, handleSubmit, setValue, clearErrors } = useForm();
+  const {control, handleSubmit, setValue, clearErrors} = useForm();
 
   return (
     <>
@@ -29,8 +29,8 @@ export default function NameForm() {
           name="name"
           control={control}
           // проверка корректности номера
-          rules={{ required: true, pattern: /^[A-Za-zА-ЯёЁа-я- ]+$/ }}
-          render={({ field, fieldState }) => (
+          rules={{required: true, pattern: /^[A-Za-zА-ЯёЁа-я- ]+$/}}
+          render={({field, fieldState}) => (
             <>
               <AuthNameInput
                 {...field}
@@ -52,11 +52,11 @@ export default function NameForm() {
         <NameFooterText>
           <AuthCheckBox
             required
-            checkedIcon={<img src={CheckboxTrue} />}
-            icon={<img src={CheckboxFalse} />}
+            checkedIcon={<img src={CheckboxTrue} alt='chtrue' />}
+            icon={<img src={CheckboxFalse} alt='chfalse' />}
           />
           Я согласен с{" "}
-          <span style={{ color: "black", cursor: "pointer" }}>
+          <span style={{color: "black", cursor: "pointer"}}>
             Пользовательским соглашением
           </span>
         </NameFooterText>

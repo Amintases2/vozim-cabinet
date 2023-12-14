@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <HeaderWrapper>
       <div>
-        <img src={Logo} />
+        <img src={Logo} alt="logo" />
       </div>
       <div>
         <div>

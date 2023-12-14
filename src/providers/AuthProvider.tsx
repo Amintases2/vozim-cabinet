@@ -27,7 +27,7 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
   // отклонение влево
   const [left, setLeft] = useState<0 | 100 | 200>(0);
   // номер из 1ой стадии
