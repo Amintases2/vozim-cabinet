@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FooterText, ResendCodeText } from "@styles/AuthStyles";
+import { useResendCode } from "@hooks/useResendCode.tsx";
 
 // таймер для повторной отправки сообщений
 export default function CodeTimer() {
@@ -7,6 +8,8 @@ export default function CodeTimer() {
   // переменные для отображения времени в минутах и секундах
   const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");
   const secondsString = String(Math.ceil(seconds % 60)).padStart(2, "0");
+
+  const {refetch} = useResendCode()
 
   // логика таймера - вычетание секунд
   useEffect(() => {
@@ -16,9 +19,10 @@ export default function CodeTimer() {
     return () => clearInterval(interval);
   }, []);
 
-  // обновление таймера, повторная отправка сообщений
+  // обновление таймера, повторная отправка смс
   const handleClick = () => {
     setSeconds(90);
+    refetch()
   };
 
   return (

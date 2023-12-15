@@ -43,6 +43,15 @@ class UserServices {
     return await axios.post(url);
   }
 
+  async authRecode(phone: string) {
+    // const data = {
+    //   phone: phone,
+    //   code: code,
+    // }
+    const url = `${this.URL}/smsResend?phone=${phone}`;
+    return await axios.post(url);
+  }
+
   async authName(name: string) {
     // const data = {name: name}
     const url = `${this.URL}/register?name=${name}`;

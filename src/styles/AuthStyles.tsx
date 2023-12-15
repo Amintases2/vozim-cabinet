@@ -11,7 +11,6 @@ import {
   SmallestText,
   SmallText,
   HugeText,
-  HugestText,
 } from "@styles/GlobalStyles";
 
 import { device } from "@styles/device";
@@ -86,8 +85,8 @@ const AuthPhoneInput = styled(MuiTelInput)`
   }
 
   > .MuiFormHelperText-root {
-    #position: absolute;
-    #top: 35px;
+    //position: absolute;
+    //top: 35px;
     font-size: 14px;
     line-height: 20px;
     margin: 6px 0 0 0;
@@ -118,8 +117,8 @@ const AuthNameInput = styled(AuthBaseInput)`
     font-size: 14px;
     line-height: 20px;
     margin: 6px 0 0 0;
-    #position: absolute;
-    #top: 35px;
+    //position: absolute;
+    //top: 35px;
   }
 `;
 
