@@ -43,20 +43,20 @@ export default function MobileApp() {
           textAlign: "center",
         }}
       >
-        <div
-          style={{
-            marginBottom: "16px",
-            textAlign: "left",
-            paddingLeft: "80px",
-          }}
-        >
-          <MobileHugeText component="span">
-            Отслеживайте доставку
-          </MobileHugeText>
-          <br />
-          <HugestText component="span">в мобильном приложении</HugestText>
-        </div>
-        <img src={Lines} />
+        {/*<div*/}
+        {/*  style={{*/}
+        {/*    marginBottom: "16px",*/}
+        {/*    textAlign: "left",*/}
+        {/*    paddingLeft: "80px",*/}
+        {/*  }}*/}
+        {/*>*/}
+        {/*  <MobileHugeText component="span">*/}
+        {/*    Отслеживайте доставку*/}
+        {/*  </MobileHugeText>*/}
+        {/*  <br />*/}
+        {/*  <HugestText component="span">в мобильном приложении</HugestText>*/}
+        {/*</div>*/}
+        {/*<img src={Lines} />*/}
       </div>
     </MobileAppWrapper>
   );
